@@ -13,14 +13,19 @@ namespace Mob
         public int DefensePower { get; set; }
         public int HealthPoints { get; set; }
         public string Weapon { get; set; }
+
+        public string Special { get; }
         public bool InCover { get; set; }
+
+      
 
         public Pokemon(
             string name,
             int attackPower,
             int defensePower,
             int healthPoints,
-            string weapon
+            string weapon,
+            string special
         )
         {
             Name = name;
@@ -60,7 +65,10 @@ namespace Mob
             }
         }
 
-        public void PokeSpecial(Pokemon target) { }
+        public void PokeSpecial(Pokemon target) 
+        { 
+            switch (S)
+        }
 
         static double ReturnWeaponMutliplier(string name)
         {
