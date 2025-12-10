@@ -17,13 +17,12 @@ namespace Mob
         public string Special { get; }
         public bool InCover { get; set; }
 
-      
-
         public Pokemon(
             string name,
             int attackPower,
             int defensePower,
             int healthPoints,
+            string condition,
             string weapon,
             string special
         )
@@ -65,12 +64,156 @@ namespace Mob
             }
         }
 
-        public void PokeSpecial(Pokemon target) 
-        { 
-            switch (S)
+        public void PokeSpecial(Pokemon target)
+        {
+            switch (Special)
+            {
+                case "Rapture":
+                    Console.WriteLine(
+                        $"Divine Intellect rips reality apart, {target.Name}'s existence fully vanishes"
+                    );
+                    target.HealthPoints = 0;
+                    return;
+
+                case "Afisholypse":
+                    Console.WriteLine(
+                        $"Huge sized Fish fly down from the sky and rain down on {target.Name}. {target.Name} takes 500 Damage and is Stunned for 3 rounds!"
+                    );
+                    target.HealthPoints = -500;
+                    return;
+
+                case "Doom":
+                    Console.WriteLine("The sky's color is overshadowed by a glooming red ");
+                    return;
+
+                case "Fish cage":
+                    return;
+
+                case "immense shield":
+                    return;
+
+                case "FESCHT HÄBE":
+                    return;
+
+                case "Chained Storms":
+                    return;
+
+                case "Concentrated Meteor":
+                    return;
+
+                case "Luminar Buff":
+                    return;
+
+                case "Pierced Focus":
+                    return;
+
+                case "Titan Knuckle":
+                    return;
+
+                case "Ember Lock":
+                    return;
+
+                case "Mind Fracture":
+                    return;
+
+                case "Blaze Lance":
+                    return;
+
+                case "Volt Stunwave":
+                    return;
+
+                case "Cursed Snap":
+                    return;
+
+                case "Royal Hex":
+                    return;
+
+                case "Neural Freeze":
+                    return;
+
+                case "Mud Concussion":
+                    return;
+
+                case "Gravity Drop":
+                    return;
+
+                case "Psyshock Torrent":
+                    return;
+
+                case "Coil Slam":
+                    return;
+
+                case "Timber Bash":
+                    return;
+
+                case "Seismic Spike":
+                    return;
+
+                case "Bitchass Hating":
+                    return;
+
+                case "Feet Feast":
+                    return;
+
+                case "Stalk":
+                    return;
+
+                case "goon":
+                    return;
+
+                case "Call of the Voices":
+                    return;
+
+                case "Fire Breath":
+                    return;
+
+                case "Lightning":
+                    return;
+
+                case "Mud Pop":
+                    return;
+
+                case "Adapt Burst":
+                    return;
+
+                case "Head Pulse":
+                    return;
+
+                case "Timber Nudge":
+                    return;
+
+                case "Burrow Sting":
+                    return;
+
+                case "Iron Spirit":
+                    return;
+
+                case "Boulder Jab":
+                    return;
+
+                case "Spark Claw":
+                    return;
+
+                case "Mind Skip":
+                    return;
+
+                case "Lazy Slide":
+                    return;
+
+                case "Aqua Flick":
+                    return;
+
+                case "Static Peep":
+                    return;
+            }
+            if (target.HealthPoints <= 0)
+            {
+                Console.WriteLine($"{target.Name} is already defeated.");
+                return;
+            }
         }
 
-        static double ReturnWeaponMutliplier(string name)
+        public double ReturnWeaponMutliplier(string name)
         {
             switch (name)
             {
