@@ -9,11 +9,11 @@ namespace Mob
     internal class Pokemon
     {
         public string Name { get; }
-        public int AttackPower { get; private set; }
-        public int DefensePower { get; private set; }
+        public int AttackPower { get; set; }
+        public int DefensePower { get; set; }
         public int HealthPoints { get; set; }
-        public string Weapon { get; private set; }
-        public bool InCover { get; private set; }
+        public string Weapon { get; set; }
+        public bool InCover { get; set; }
 
         public Pokemon(
             string name,
@@ -26,8 +26,64 @@ namespace Mob
             Name = name;
             HealthPoints = healthPoints;
             Weapon = weapon;
-            AttackPower = attackPower;
             DefensePower = defensePower;
+            AttackPower = CalculateAttackPower(attackPower);
+        }
+
+        public void PokeAttack(Pokemon target)
+        {
+            if (target.HealthPoints <= 0)
+            {
+                Console.WriteLine($"{target.Name} is already defeated.");
+                return;
+            }
+
+            int damage = Math.Max(0, this.AttackPower - target.DefensePower);
+
+            target.HealthPoints -= damage;
+            if (target.HealthPoints < 0)
+                target.HealthPoints = 0;
+            ;
+
+            if (target.HealthPoints <= 0)
+            {
+                Console.WriteLine(
+                    $"{this.Name} attacked {target.Name} with {this.Weapon} dealing {damage} damage. {target.Name} has been killed!"
+                );
+                return;
+            }
+            else
+            {
+                Console.WriteLine(
+                    $"{this.Name} attacked {target.Name} with {this.Weapon} dealing {damage} damage. {target.Name} has {target.HealthPoints} HP left."
+                );
+            }
+        }
+
+        public void PokeSpecial(Pokemon target) { }
+
+        static double ReturnWeaponMutliplier(string name)
+        {
+            switch (name)
+            {
+                case "":
+                    return 1.0;
+                case "1":
+                    return 1.1;
+                case "2":
+                    return 1.2;
+                case "3":
+                    return 1.3;
+                case "4":
+                    return 1.4;
+                default:
+                    return 1.5;
+            }
+        }
+
+        public int CalculateAttackPower(int atP)
+        {
+            return Convert.ToInt32(atP * (ReturnWeaponMutliplier(Weapon)));
         }
     }
 }
