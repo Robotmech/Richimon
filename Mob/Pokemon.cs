@@ -15,17 +15,19 @@ namespace Mob
         public string Weapon { get; private set; }
         public bool InCover { get; private set; }
 
-        public Pokemon(string name, int attackPower, int defensePower, int healthPoints, string weapon)
+        public Pokemon(
+            string name,
+            int attackPower,
+            int defensePower,
+            int healthPoints,
+            string weapon
+        )
         {
             Name = name;
             HealthPoints = healthPoints;
             Weapon = weapon;
-            AttackPower = attackPower * ;
-            DefensePower = defensePower
-            this.positionX = positionX;
-            this.positionY = positionY;
-            Console.WriteLine($"PMC {this.Name} created: ");
+            AttackPower = attackPower;
+            DefensePower = defensePower;
         }
-
     }
 }
