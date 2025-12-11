@@ -116,5 +116,22 @@ namespace Mob
         {
             return Convert.ToInt32(atP * (ReturnWeaponMutliplier(Weapon)));
         }
+
+        public void Turn(Pokemon target)
+        {
+            int turnrng = rng.Next(1, 101);
+            if (turnrng <= 40)
+            {
+                this.PokeAttack(target);
+            }
+            else if (turnrng > 40 && turnrng <= 80)
+            {
+                this.Resist();
+            }
+            else if (turnrng > 80 && this.Grenade > 0)
+            {
+                this.PokeSpecial(target);
+            }
+        }
     }
 }
