@@ -59,7 +59,6 @@ namespace Mob
             target.HealthPoints -= damage;
             if (target.HealthPoints < 0)
                 target.HealthPoints = 0;
-            ;
 
             if (target.HealthPoints <= 0)
             {
@@ -76,9 +75,9 @@ namespace Mob
             }
         }
 
-        public void PokeSpecial(Pokemon target) 
+        public void PokeSpecial(Pokemon target)
         {
-            AbilityDatabase.Specials[Special].Effect(this, target)
+            AbilityDatabase.Specials[Special].Effect(this, target);
         }
 
         public double ReturnWeaponMutliplier(string name)
