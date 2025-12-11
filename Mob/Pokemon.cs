@@ -70,7 +70,7 @@ namespace Mob
 
         public void PokeSpecial(Pokemon target) 
         {
-            AbilityDatabase
+            AbilityDatabase.Specials[Special].Effect(this, target)
         }
 
         public double ReturnWeaponMutliplier(string name)

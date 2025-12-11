@@ -1,10 +1,11 @@
+using System;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pokemon_weapons
+namespace Mob
 {
-    internal class Weapons
+    internal class Weapon
     {
-
+        public Action<Pokemon Pokemon> Effect;
     }
 }
