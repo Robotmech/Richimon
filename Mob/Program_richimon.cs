@@ -18,7 +18,7 @@ namespace Program_Richimon
             int rand = new Random().Next(1, 45);
             CreatePokemon.MakeAllPokemon();
             
-            Pokemon Player = new Pokemon
+            Pokemon player = new Pokemon
             (
                 PokeBase.All[rand].Name,
                 PokeBase.All[rand].AttackPower,
@@ -31,7 +31,7 @@ namespace Program_Richimon
 
 
             Console.WriteLine();
-            Console.WriteLine($"Player ready: {player.Name} | ATK: {player.AttackPower} | DEF: {player.DefensePower} | HP: {player.HealthPoints} | Weapon: {player.weapon} | Special: {p§layer.special})");
+            Console.WriteLine($"Player ready: {player.Name} | ATK: {player.AttackPower} | DEF: {player.DefensePower} | HP: {player.HealthPoints} | Weapon: {player.Weapon} | Special: {player.Special})");
 
           
 
