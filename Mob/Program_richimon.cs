@@ -13,26 +13,36 @@ namespace Program_Richimon
         {
             Console.WriteLine("Create your Character:");
             Console.Write("Enter your name: ");
-            string name = Console.ReadLine()
-
-            /*Placeholder*/ player = new //Placeholder for player creation
+            
+            int rand = new Random().Next(1, 45);
+            
+            Pokemon Player = new 
+            (
+                allPokemon[rand].Name,
+                allPokemon[rand].AttackPower,
+                allPokemon[rand].DefensePower,
+                allPokemon[rand].HealthPoints,
+                allPokemon[rand].Condition,
+                allPokemon[rand].weapon,
+                allPokemon[rand].special
+            );
 
 
             Console.WriteLine();
-            Console.WriteLine($"Player ready: {player.Name} | ATK: {player.AttackPower} | DEF: {player.DefensePower} | HP: {player.HealthPoints} | Weapon: {player.weapon} | Armor: {player.armor} (Durability {player.ArmorDurability}/{player.ArmorMaxDurability})");
+            Console.WriteLine($"Player ready: {player.Name} | ATK: {player.AttackPower} | DEF: {player.DefensePower} | HP: {player.HealthPoints} | Weapon: {player.weapon} | Special: {p§layer.special})");
 
           
 
             while (encounter = true) // Placeholder for encounter loop
             {
                 Console.WriteLine();
-                Console.WriteLine("Encounter! Choose your action each turn.");
+                Console.WriteLine("Encounterd an aggresive Pokemon! Choose your action each turn.");
 
                 while (player.HealthPoints > 0 && enemy.HealthPoints > 0)
                 {
                     Console.WriteLine();
                     Console.WriteLine($"Status -> You: HP {player.HealthPoints}, ATK {player.AttackPower}, DEF {player.DefensePower}, Armor {player.armor} ({player.ArmorDurability}/{player.ArmorMaxDurability}) | Enemy: HP {enemy.HealthPoints}, ATK {enemy.AttackPower}, DEF {enemy.DefensePower}, Armor {enemy.armor} ({enemy.ArmorDurability}/{enemy.ArmorMaxDurability})");
-                    Console.Write("Choose action: [A]ttack, [F]lee, [H]eal, [G]renade, [C]over: ");
+                    Console.Write("Choose action: [A]ttack, [F]lee, [S]pecial, [R]esist: ");
                     var action = Console.ReadLine()?.Trim().ToUpperInvariant();
 
                     if (action == "F")
@@ -59,21 +69,8 @@ namespace Program_Richimon
 
                         enemy.Turn(player);
                     }
-                    else if (action == "H")
-                    {
-                        if (player.HealthPoints >= 100)
-                        {
-                            Console.WriteLine("You are already at full health.");
-                            continue;
-                        }
-                        else
-                        {
-                            int healAmount = 20;
-                            player.Heal(healAmount);
-                            Console.WriteLine($"You healed for {healAmount} HP.");
-                        }
-                    }
-                    else if (action == "G")
+                   
+                    else if (action == "S")
                     {
                         player.ThrowGrenade(enemy);
                         if (enemy.HealthPoints <= 0)
@@ -82,14 +79,14 @@ namespace Program_Richimon
                         }
                         enemy.Turn(player);
                     }
-                    else if (action == "C")
+                    else if (action == "R")
                     {
                         player.TakeCover();
                         enemy.Turn(player);
                     }
                     else
                     {
-                        Console.WriteLine("Invalid action. Please choose 'A' to attack or 'F' to flee or 'H' to Heal.");
+                        Console.WriteLine("Invalid action. Please choose a Valid Action by pressing the corresponding Letter on your Keyboard.");
                     }
                 }
                 Console.ReadLine();
@@ -165,234 +162,3 @@ namespace Program_Richimon
         }
     }
 
-    public class PMC
-    {
-        private static readonly Random rng = new Random();
-
-        // Automatic Properties
-        public string Name { get; }
-        public int AttackPower { get; private set; }
-        public int DefensePower { get; private set; }
-        public int HealthPoints { get; set; }
-        public string weapon { get; private set; }
-        public string armor { get; private set; }
-        public int positionX { get; private set; }
-        public int positionY { get; private set; }
-        public int Grenade = 1;
-        public bool inCover { get; private set; }
-        public string location { get; private set; }
-
-        // Armor durability
-        public int ArmorMaxDurability { get; private set; }
-        public int ArmorDurability { get; private set; }
-
-        // Constructor
-        public PMC(string name, int attackPower, int defensePower, int healthPoints, string weapon, string armor)
-        {
-            this.Name = name;
-            this.HealthPoints = healthPoints;
-            this.weapon = weapon;
-            this.armor = armor;
-            this.AttackPower = CalculateAttackFromWeapon(weapon);
-            this.ArmorMaxDurability = GetArmorMaxDurability(armor);
-            this.ArmorDurability = this.ArmorMaxDurability;
-            this.DefensePower = CalculateDefenseFromArmor(armor, this.ArmorDurability, this.ArmorMaxDurability);
-            this.positionX = positionX;
-            this.positionY = positionY;
-            Console.WriteLine($"PMC {this.Name} created: ");
-        }
-
-        // Methods
-
-        //******COMBAT METHODS******//
-
-        //******COVER METHOD******//
-        public void TakeCover()
-        {
-            this.inCover = true;
-            this.DefensePower += 100;
-            Console.WriteLine($"{Name} is taking cover! Defense Power increased to {DefensePower}.");
-        }
-        //******COVER METHOD******//
-
-        //******GRENADE METHOD******//
-        public void ThrowGrenade(PMC target)
-        {
-            if (Grenade <= 0)
-            {
-                Console.WriteLine($"{Name} has no grenades left to throw.");
-                return;
-            }
-            else
-            {
-                Grenade--;
-                int grenadeDamage = 70;
-                target.HealthPoints -= grenadeDamage;
-                if (target.HealthPoints < 0) target.HealthPoints = 0;
-                Console.WriteLine($"{Name} threw a grenade at {target.Name}, dealing {grenadeDamage} damage. {target.Name} has {target.HealthPoints} HP left.");
-            }
-        }
-        //******GRENADE METHOD******//
-
-
-        //******MOVEMENT METHOD******//
-        public void move(int addX, int addY)
-        {
-            this.positionX += addX;
-            this.positionY += addY;
-            Console.WriteLine($"{Name} moved to new position: ({positionX}, {positionY})");
-        }
-        //******MOVEMENT METHOD******//
-
-        //******Weapon AND Armor CHANGE METHODS******//
-        public void changeWeapon(string newWeapon)
-        {
-            this.weapon = newWeapon;
-            this.AttackPower = CalculateAttackFromWeapon(newWeapon);
-            Console.WriteLine($"{Name} changed weapon to: {weapon}. New Attack Power: {AttackPower}");
-        }
-
-        public void changeArmor(string newArmor)
-        {
-            this.armor = newArmor;
-            this.ArmorMaxDurability = GetArmorMaxDurability(newArmor);
-            this.ArmorDurability = this.ArmorMaxDurability;
-            this.DefensePower = CalculateDefenseFromArmor(newArmor, this.ArmorDurability, this.ArmorMaxDurability);
-            Console.WriteLine($"{Name} equipped armor: {armor}. New Defense Power: {DefensePower}. Durability: {ArmorDurability}/{ArmorMaxDurability}");
-        }
-        //******Weapon AND Armor CHANGE METHODS******//
-
-        public void Turn(PMC target)
-        {
-            int turnrng = rng.Next(1, 101);
-            if (turnrng <= 40)
-            {
-                this.Attack(target);
-            }
-            else if (turnrng > 40 && turnrng <= 80)
-            {
-                this.TakeCover();
-            }
-            else if (turnrng > 80 && this.Grenade > 0)
-            { 
-                this.ThrowGrenade(target);
-            }
-        }
-        //******COMBAT METHODS******//
-        public void Attack(PMC target)
-        {
-            if (target.HealthPoints <= 0)
-            {
-                Console.WriteLine($"{target.Name} is already defeated.");
-                return;
-            }
-
-            if (RollHeadshot())
-            {
-                target.HealthPoints = 0;
-                Console.WriteLine($"{this.Name} landed a HEADSHOT on {target.Name} with {this.weapon}! Instant kill.");
-                return;
-            }
-
-            int damage = Math.Max(0, this.AttackPower - target.DefensePower);
-            if (damage == 0)
-            {
-                Console.WriteLine($"{this.Name} shot at {target.Name}, but the armor absorbed the damage.");
-                target.DegradeArmor(1);
-                return;
-            }
-
-            target.HealthPoints -= damage;
-            if (target.HealthPoints < 0) target.HealthPoints = 0;
-            target.DegradeArmor(damage / 2);
-
-            if (target.HealthPoints <= 0)
-            {
-                Console.WriteLine($"{this.Name} shot {target.Name} with {this.weapon} dealing {damage} damage. {target.Name} has been killed!");
-                return;
-            }
-
-            Console.WriteLine($"{this.Name} shot {target.Name} with {this.weapon} dealing {damage} damage. {target.Name} has {target.HealthPoints} HP left.");
-        }
-        //******COMBAT METHODS******//
-
-        //******Healing METHOD******//
-        public void Heal(int healAmount)
-        {
-            this.HealthPoints += healAmount;
-            Console.WriteLine($"{this.Name} healed for {healAmount} points. Current HP: {this.HealthPoints}");
-        }
-        //******Healing METHOD******//
-
-        //******Armor Degrade******//
-        private void DegradeArmor(int amount)
-        {
-            if (this.ArmorDurability <= 0 || amount <= 0) return;
-
-            this.ArmorDurability -= amount;
-            if (this.ArmorDurability < 0) this.ArmorDurability = 0;
-
-            this.DefensePower = CalculateDefenseFromArmor(this.armor, this.ArmorDurability, this.ArmorMaxDurability);
-
-            Console.WriteLine($"{this.Name}'s {this.armor} durability decreased by {amount}. Durability: {this.ArmorDurability}/{this.ArmorMaxDurability}. New DEF: {this.DefensePower}");
-        }
-        //******Armor Degrade******//
-
-        //******RANDOM METHODS FOR ATTACK AND DEFENSE CALCULATION******//
-        private bool RollHeadshot()
-        {
-            return rng.Next(0, 100) < 10;
-        }
-
-        public bool fleesuccesschance()
-        {
-            return rng.Next(0, 100) < 50;
-        }
-
-        //******RANDOM METHODS FOR ATTACK AND DEFENSE CALCULATION******//
-        private int CalculateAttackFromWeapon(string w)
-        {
-            switch (w)
-            {
-                case "M4A1": return 50;
-                case "AK-74m": return 45;
-                case "SVD": return 65;
-                case "MP5A3": return 30;
-                case "VSS": return 40;
-                default: return 20;
-            }
-        }
-
-        private int GetArmorMaxDurability(string a)
-        {
-            switch (a)
-            {
-                case "PACA": return 40;
-                case "Trooper": return 60;
-                case "IBA": return 70;
-                case "Gen4 Assault": return 80;
-                case "Slick": return 90;
-                default: return 30;
-            }
-        }
-
-        private int CalculateDefenseFromArmor(string a, int durability, int maxDurability)
-        {
-            int baseDef;
-            switch (a)
-            {
-                case "PACA": baseDef = 20; break;
-                case "Trooper": baseDef = 30; break;
-                case "IBA": baseDef = 40; break;
-                case "Gen4 Assault": baseDef = 45; break;
-                case "Slick": baseDef = 55; break;
-                default: baseDef = 10; break;
-            }
-
-            double ratio = maxDurability <= 0 ? 0.0 : (double)durability / maxDurability;
-            int scaled = (int)Math.Round(baseDef * ratio);
-            return Math.Max(0, scaled);
-        }
-
-    }
-}
