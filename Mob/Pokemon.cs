@@ -34,6 +34,7 @@ namespace Mob
             HealthPoints = healthPoints;
             Weapon = weapon;
             DefensePower = defensePower;
+            Special = special;
             AttackPower = CalculateAttackPower(attackPower);
         }
 
@@ -69,7 +70,7 @@ namespace Mob
 
         public void PokeSpecial(Pokemon target)
         {
-            Ability.Specials[Special].Effect()
+            AbilityDatabase
         }
 
         public double ReturnWeaponMutliplier(string name)
