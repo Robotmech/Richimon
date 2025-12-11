@@ -9,7 +9,7 @@ namespace Mob
     public class Ability
     {
         public Action<Pokemon, Pokemon> Effect;
-    }
+    } //one
 
     public static Dictionary<string, Ability> Specials = new Dictionary<string, Ability>()
     {
