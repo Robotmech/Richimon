@@ -355,6 +355,7 @@ namespace Mob
                     target.Condition = "Paralyzed";
                     target.ConditionTime = 1;
                     return;
+                }
             }
 
         public double ReturnWeaponMutliplier(string name)
