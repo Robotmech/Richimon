@@ -19,7 +19,7 @@ namespace Mob
                 "None",
                 "",
                 "Rapture"
-            ); // original
+            );
             Pokemon pok2 = new Pokemon("FiHGOD", 500, 95, 1200, "None", "", "Afisholypse");
             Pokemon pok3 = new Pokemon("Richard", 450, 90, 1100, "None", "", "Doom");
             Pokemon pok4 = new Pokemon("FiHGON", 420, 88, 1050, "None", "", "Fish cage");

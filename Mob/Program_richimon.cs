@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Xsl;
@@ -28,13 +29,16 @@ namespace Program_Richimon
             CreatePokemon.MakeAllPokemon();
             int rand = new Random().Next(1, 45);
             int playerPokemon = rand;
+            var randomWeapon = WeaponDatabase
+                .weapons.ElementAt(Globals.rng.Next(WeaponDatabase.weapons.Count))
+                .Value.Name;
             Pokemon player = new Pokemon(
                 PokeBase.All[playerPokemon].Name,
                 PokeBase.All[playerPokemon].AttackPower,
                 PokeBase.All[playerPokemon].DefensePower,
                 PokeBase.All[playerPokemon].HealthPoints,
                 PokeBase.All[playerPokemon].Condition,
-                PokeBase.All[playerPokemon].Weapon,
+                randomWeapon,
                 PokeBase.All[playerPokemon].Special
             );
 
@@ -85,20 +89,35 @@ namespace Program_Richimon
                     PokeBase.All[enemyPokemon].DefensePower,
                     PokeBase.All[enemyPokemon].HealthPoints,
                     PokeBase.All[enemyPokemon].Condition,
-                    PokeBase.All[enemyPokemon].Weapon,
+                    randomWeapon,
                     PokeBase.All[enemyPokemon].Special
                 );
 
                 Console.WriteLine(
-                    "Encountered an aggresive Pokemon! Choose your action each turn."
+                    $"Encountered an aggresive {enemy.Name}! Choose your action each turn."
                 );
 
                 while (player.HealthPoints > 0 && enemy.HealthPoints > 0)
                 {
                     Console.WriteLine();
-                    Console.WriteLine(
-                        $"Status -> You: HP {player.HealthPoints}, ATK {player.AttackPower}, DEF {player.DefensePower} \n Enemy: HP {enemy.HealthPoints}, ATK {enemy.AttackPower}, DEF {enemy.DefensePower})"
-                    );
+
+                    if (Globals.StartOfTurn)
+                    {
+                        Console.WriteLine(
+                            $"Status -> You: HP {player.HealthPoints}, ATK {player.AttackPower}, DEF {player.DefensePower} \n Enemy: HP {enemy.HealthPoints}, ATK {enemy.AttackPower}, DEF {enemy.DefensePower})"
+                        );
+                        if (player.SpecialCharge != 0)
+                        {
+                            player.SpecialCharge--;
+                        }
+
+                        if (player.ReloadTime != 0)
+                        {
+                            player.ReloadTime--;
+                        }
+                        Globals.StartOfTurn = false;
+                    }
+
                     Console.Write("Choose action: [A]ttack, [F]lee, [S]pecial, [R]esist: ");
                     var action = Console.ReadLine()?.Trim().ToUpperInvariant();
                     player.SpecialCharge++;
@@ -120,13 +139,20 @@ namespace Program_Richimon
                     }
                     else if (action == "A")
                     {
-                        player.PokeAttack(enemy);
-                        if (enemy.HealthPoints <= 0)
+                        if (player.ReloadTime == 0)
                         {
-                            break;
-                        }
+                            player.PokeAttack(enemy);
+                            if (enemy.HealthPoints <= 0)
+                            {
+                                break;
+                            }
 
-                        enemy.Turn(player);
+                            enemy.Turn(player);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Weapon is still reloading");
+                        }
                     }
                     else if (action == "S")
                     {

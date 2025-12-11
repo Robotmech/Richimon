@@ -6,7 +6,8 @@ namespace Mob
 {
     internal class Weapon
     {
-        public Action<Pokemon, Pokemon> wpSp;
+        public Action<Pokemon, Pokemon> wpSpc;
+        public double wpMulti;
         public string Name;
     }
 }

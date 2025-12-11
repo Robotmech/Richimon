@@ -21,6 +21,7 @@ namespace Mob
         public string Special { get; }
         public int SpecialCharge { get; set; }
         public bool InCover { get; set; }
+        public int ReloadTime { get; set; }
 
         public Pokemon(
             string name,
@@ -38,6 +39,7 @@ namespace Mob
             DefensePower = defensePower;
             Special = special;
             AttackPower = CalculateAttackPower(attackPower);
+            ReloadTime = 0;
         }
 
         public void PokeAttack(Pokemon target)
@@ -90,7 +92,9 @@ namespace Mob
         public void Resist()
         {
             InCover = true;
-            Console.WriteLine($"{Name} went into Cover! Damage is Reduced by 50%");
+            Console.WriteLine(
+                $"{Name} went into Cover! Upcoming damage is reduced by 50% for the next turn"
+            );
         }
 
         public double ReturnWeaponMutliplier(string name)
@@ -119,19 +123,29 @@ namespace Mob
 
         public void Turn(Pokemon target)
         {
-            int turnrng = rng.Next(1, 101);
-            if (turnrng <= 40)
+            if (this.SpecialCharge != 0)
+            {
+                this.SpecialCharge--;
+            }
+
+            if (this.ReloadTime != 0)
+            {
+                this.ReloadTime--;
+            }
+            int turnrng = Globals.rng.Next(1, 101);
+            if (turnrng <= 40 && this.ReloadTime == 0)
             {
                 this.PokeAttack(target);
             }
-            else if (turnrng > 40 && turnrng <= 80)
-            {
-                this.Resist();
-            }
-            else if (turnrng > 80 && this.Grenade > 0)
+            else if (turnrng > 80 && this.SpecialCharge > 0)
             {
                 this.PokeSpecial(target);
             }
+            else
+            {
+                this.Resist();
+            }
+            Globals.StartOfTurn = true;
         }
     }
 }
