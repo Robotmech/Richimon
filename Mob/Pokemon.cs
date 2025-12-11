@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mob
 {
-    internal class Pokemon
+    public class Pokemon
     {
         public string Name { get; }
         public int AttackPower { get; set; }
@@ -68,7 +68,10 @@ namespace Mob
             }
         }
 
-        public void PokeSpecial(Pokemon target) { }
+        public void PokeSpecial(Pokemon target) 
+        {
+            AbilityDatabase
+        }
 
         public double ReturnWeaponMutliplier(string name)
         {
