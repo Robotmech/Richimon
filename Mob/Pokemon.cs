@@ -8,6 +8,14 @@ namespace Mob
 {
     public class Pokemon
     {
+        static void Main(string[] args) 
+        { 
+            while ()
+        
+        
+        
+        
+        }
         public string Name { get; }
         public int AttackPower { get; set; }
         public int DefensePower { get; set; }
