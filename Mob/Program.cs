@@ -290,19 +290,7 @@ namespace Mob
             );
         }
 
-        public void changeArmor(string newArmor)
-        {
-            this.armor = newArmor;
-            this.ArmorMaxDurability = GetArmorMaxDurability(newArmor);
-            this.ArmorDurability = this.ArmorMaxDurability;
-            this.DefensePower = CalculateDefenseFromArmor(
-                newArmor,
-                this.ArmorDurability,
-                this.ArmorMaxDurability
-            );
-            Console.WriteLine(
-                $"{Name} equipped armor: {armor}. New Defense Power: {DefensePower}. Durability: {ArmorDurability}/{ArmorMaxDurability}"
-            );
+        
         }
 
         //******COMBAT METHODS******//
