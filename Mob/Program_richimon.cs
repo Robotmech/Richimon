@@ -35,7 +35,7 @@ namespace Program_Richimon
 
           
 
-            while (encounter = true) // Placeholder for encounter loop
+            while (encounter = true)
             {
                 Console.WriteLine();
                 Console.WriteLine("Encounterd an aggresive Pokemon! Choose your action each turn.");
@@ -63,7 +63,7 @@ namespace Program_Richimon
 
                     else if (action == "A")
                     {
-                        player.Attack(enemy);
+                        player.PokeAttack(enemy);
                         if (enemy.HealthPoints <= 0)
                         {
                             break;
@@ -74,7 +74,7 @@ namespace Program_Richimon
                    
                     else if (action == "S")
                     {
-                        player.ThrowGrenade(enemy);
+                        player.PokeSpecial(enemy);
                         if (enemy.HealthPoints <= 0)
                         {
                             break;
@@ -83,7 +83,7 @@ namespace Program_Richimon
                     }
                     else if (action == "R")
                     {
-                        player.TakeCover();
+                        player.Resist();
                         enemy.Turn(player);
                     }
                     else
