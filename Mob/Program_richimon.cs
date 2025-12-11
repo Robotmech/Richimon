@@ -3,140 +3,102 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Xsl;
 
-namespace Mob
+namespace Program_Richimon
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Create your PMC:");
-            Console.Write("Enter PMC name: ");
-            string name = Console.ReadLine();
+            Console.WriteLine("Create your Character:");
+            Console.Write("Enter your name: ");
+            string name = Console.ReadLine()
 
-            int hp = 100;
+            /*Placeholder*/ player = new //Placeholder for player creation
 
-            string selectedWeapon = SelectWeapon(new[]
-            {
-                "M4A1",
-                "AK-74m",
-                "SVD",
-                "MP5A3",
-                "VSS"
-            });
-
-            string selectedArmor = SelectArmor(new[]
-            {
-                "PACA (20)",
-                "Trooper (30)",
-                "IBA (40)",
-                "Gen4 Assault (45)",
-                "Slick (55 DEF)"
-            });
-
-            PMC player = new PMC(name, 0, 0, hp, selectedWeapon, selectedArmor);
-            player.changeWeapon(selectedWeapon);
-            player.changeArmor(selectedArmor);
 
             Console.WriteLine();
-            Console.WriteLine($"PMC ready: {player.Name} | ATK: {player.AttackPower} | DEF: {player.DefensePower} | HP: {player.HealthPoints} | Weapon: {player.weapon} | Armor: {player.armor} (Durability {player.ArmorDurability}/{player.ArmorMaxDurability})");
+            Console.WriteLine($"Player ready: {player.Name} | ATK: {player.AttackPower} | DEF: {player.DefensePower} | HP: {player.HealthPoints} | Weapon: {player.weapon} | Armor: {player.armor} (Durability {player.ArmorDurability}/{player.ArmorMaxDurability})");
 
-            var enemyWeapons = new[]
-            {
-                "M4A1",
-                "AK-74m",
-                "SVD",
-                "MP5A3",
-                "VSS"
-            };
-            var enemyArmors = new[]
-            {
-                "PACA",
-                "Trooper",
-                "IBA",
-                "Gen4 Assault",
-                "Slick"
-            };
-            var rand = new Random();
-            string enemyWeapon = enemyWeapons[rand.Next(enemyWeapons.Length)];
-            string enemyArmor = enemyArmors[rand.Next(enemyArmors.Length)];
+          
 
-            PMC enemy = new PMC("Scav", 0, 0, 80, enemyWeapon, enemyArmor);
-            enemy.changeWeapon(enemyWeapon);
-            enemy.changeArmor(enemyArmor);
-
-            Console.WriteLine();
-            Console.WriteLine("Encounter! Choose your action each turn.");
-
-            while (player.HealthPoints > 0 && enemy.HealthPoints > 0)
+            while (encounter = true) // Placeholder for encounter loop
             {
                 Console.WriteLine();
-                Console.WriteLine($"Status -> You: HP {player.HealthPoints}, ATK {player.AttackPower}, DEF {player.DefensePower}, Armor {player.armor} ({player.ArmorDurability}/{player.ArmorMaxDurability}) | Enemy: HP {enemy.HealthPoints}, ATK {enemy.AttackPower}, DEF {enemy.DefensePower}, Armor {enemy.armor} ({enemy.ArmorDurability}/{enemy.ArmorMaxDurability})");
-                Console.Write("Choose action: [A]ttack, [F]lee, [H]eal, [G]renade, [C]over: ");
-                var action = Console.ReadLine()?.Trim().ToUpperInvariant();
+                Console.WriteLine("Encounter! Choose your action each turn.");
 
-                if (action == "F")
+                while (player.HealthPoints > 0 && enemy.HealthPoints > 0)
                 {
-                    if (player.fleesuccesschance())
+                    Console.WriteLine();
+                    Console.WriteLine($"Status -> You: HP {player.HealthPoints}, ATK {player.AttackPower}, DEF {player.DefensePower}, Armor {player.armor} ({player.ArmorDurability}/{player.ArmorMaxDurability}) | Enemy: HP {enemy.HealthPoints}, ATK {enemy.AttackPower}, DEF {enemy.DefensePower}, Armor {enemy.armor} ({enemy.ArmorDurability}/{enemy.ArmorMaxDurability})");
+                    Console.Write("Choose action: [A]ttack, [F]lee, [H]eal, [G]renade, [C]over: ");
+                    var action = Console.ReadLine()?.Trim().ToUpperInvariant();
+
+                    if (action == "F")
                     {
-                        Console.WriteLine("You successfully fled the encounter!");
-                        break;
+                        if (player.fleesuccesschance())
+                        {
+                            Console.WriteLine("You successfully fled the encounter!");
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Flee attempt failed! The enemy attacks you as you try to escape.");
+                            enemy.Turn(player);
+                        }
                     }
-                    else
+
+                    else if (action == "A")
                     {
-                        Console.WriteLine("Flee attempt failed! The enemy attacks you as you try to escape.");
+                        player.Attack(enemy);
+                        if (enemy.HealthPoints <= 0)
+                        {
+                            break;
+                        }
+
                         enemy.Turn(player);
                     }
-                }
-
-                else if (action == "A")
-                {
-                    player.Attack(enemy);
-                    if (enemy.HealthPoints <= 0)
+                    else if (action == "H")
                     {
-                        break;
+                        if (player.HealthPoints >= 100)
+                        {
+                            Console.WriteLine("You are already at full health.");
+                            continue;
+                        }
+                        else
+                        {
+                            int healAmount = 20;
+                            player.Heal(healAmount);
+                            Console.WriteLine($"You healed for {healAmount} HP.");
+                        }
                     }
-
-                    enemy.Turn(player);
-                }
-                else if (action == "H")
-                {
-                    if (player.HealthPoints >= 100)
+                    else if (action == "G")
                     {
-                        Console.WriteLine("You are already at full health.");
-                        continue;
+                        player.ThrowGrenade(enemy);
+                        if (enemy.HealthPoints <= 0)
+                        {
+                            break;
+                        }
+                        enemy.Turn(player);
+                    }
+                    else if (action == "C")
+                    {
+                        player.TakeCover();
+                        enemy.Turn(player);
                     }
                     else
                     {
-                        int healAmount = 20;
-                        player.Heal(healAmount);
-                        Console.WriteLine($"You healed for {healAmount} HP.");
+                        Console.WriteLine("Invalid action. Please choose 'A' to attack or 'F' to flee or 'H' to Heal.");
                     }
                 }
-                else if (action == "G")
-                {
-                    player.ThrowGrenade(enemy);
-                    if (enemy.HealthPoints <= 0)
-                    {
-                        break;
-                    }
-                    enemy.Turn(player);
-                }
-                else if (action == "C")
-                {
-                    player.TakeCover();
-                    enemy.Turn(player);
-                }
-                else
-                {
-                    Console.WriteLine("Invalid action. Please choose 'A' to attack or 'F' to flee or 'H' to Heal.");
-                }
+                Console.ReadLine();
+                Console.WriteLine("Encounter ended.");
+                Console.ReadLine();
+                Console.WriteLine("Press Enter to exit.");
             }
-            Console.ReadLine();
-            Console.WriteLine("Encounter ended.");
-            Console.ReadLine();
-            Console.WriteLine("Press Enter to exit.");
         }
+            
 
         private static int ReadInt(string prompt)
         {
