@@ -230,7 +230,7 @@ namespace Mob
             this.positionY = positionY;
             Console.WriteLine($"PMC {this.Name} created: ");
         }
-
+        
         // Methods
 
         //******COMBAT METHODS******//

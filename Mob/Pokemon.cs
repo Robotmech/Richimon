@@ -68,10 +68,7 @@ namespace Mob
             }
         }
 
-        public void PokeSpecial(Pokemon target)
-        {
-            AbilityDatabase
-        }
+        public void PokeSpecial(Pokemon target) { }
 
         public double ReturnWeaponMutliplier(string name)
         {

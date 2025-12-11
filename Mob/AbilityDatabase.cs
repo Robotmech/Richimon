@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mob
 {
-    public static class AbilityDatabase
+    public class AbilityDatabase
     {
         public static Dictionary<string, Ability> Specials = new Dictionary<string, Ability>()
         {
