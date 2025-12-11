@@ -10,7 +10,15 @@ namespace Mob
     {
         public void MakeAllPokemon()
         {
-            console
+            Pokemon pok1 = new Pokemon(
+                "Divine Intellect",
+                1000,
+                99,
+                10000000,
+                "None",
+                "",
+                "Rapture"
+            );
         }
     }
 }

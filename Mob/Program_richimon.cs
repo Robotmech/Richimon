@@ -11,7 +11,7 @@ namespace Mob
     {
         static void Main(string[] args)
         {
-            C
+            
 
 
             Console.Write("Enter your Name: ");
