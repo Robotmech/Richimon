@@ -7,12 +7,19 @@ using System.Threading.Tasks;
 
 namespace Mob
 {
-    internal class CreatePokemon
+    internal static class CreatePokemon
     {
-        public void MakeAllPokemon()
+        public static void MakeAllPokemon()
         {
-            
-            Pokemon pok1 = new Pokemon("Divine Intellect", 1000, 99, 10000000, "None", "", "Rapture");      // original
+            Pokemon pok1 = new Pokemon(
+                "Divine Intellect",
+                1000,
+                99,
+                10000000,
+                "None",
+                "",
+                "Rapture"
+            ); // original
             Pokemon pok2 = new Pokemon("FiHGOD", 500, 95, 1200, "None", "", "Afisholypse");
             Pokemon pok3 = new Pokemon("Richard", 450, 90, 1100, "None", "", "Doom");
             Pokemon pok4 = new Pokemon("FiHGON", 420, 88, 1050, "None", "", "Fish cage");
@@ -20,9 +27,16 @@ namespace Mob
             Pokemon pok6 = new Pokemon("FiH Magikarp", 380, 82, 950, "None", "", "FIH");
             Pokemon pok7 = new Pokemon("Richi", 360, 80, 900, "None", "", "FESCHT HÄBE");
 
-
             Pokemon pok8 = new Pokemon("Rayquaza Max", 350, 78, 850, "None", "", "Chained Storms");
-            Pokemon pok9 = new Pokemon("N's Reshiram", 340, 76, 830, "None", "", "Concentrated Meteor");
+            Pokemon pok9 = new Pokemon(
+                "N's Reshiram",
+                340,
+                76,
+                830,
+                "None",
+                "",
+                "Concentrated Meteor"
+            );
             Pokemon pok10 = new Pokemon("Umbreon", 260, 85, 820, "None", "", "Luminar Buff");
             Pokemon pok11 = new Pokemon("Lucario", 320, 65, 780, "None", "", "Pierced Focus");
             Pokemon pok12 = new Pokemon("Machamp", 330, 60, 800, "None", "", "Titan Knuckle");
@@ -46,7 +60,6 @@ namespace Mob
             Pokemon pok29 = new Pokemon("Twink", 150, 20, 540, "None", "", "goon");
             Pokemon pok30 = new Pokemon("Romeo??", 170, 30, 570, "None", "", "Call of the Voices");
 
-
             Pokemon pok31 = new Pokemon("Charmander", 120, 25, 360, "None", "", "Fire Breath");
             Pokemon pok32 = new Pokemon("Pikachu", 110, 20, 340, "None", "", "Lightning");
             Pokemon pok33 = new Pokemon("Wooper", 100, 30, 360, "None", "", "Mud Pop");
@@ -61,15 +74,53 @@ namespace Mob
             Pokemon pok42 = new Pokemon("Slowpoke", 90, 35, 380, "None", "", "Lazy Slide");
             Pokemon pok43 = new Pokemon("Slakoth", 80, 20, 300, "None", "", "Aqua Flick");
             Pokemon pok44 = new Pokemon("Pichu", 70, 15, 260, "None", "", "Static Peep");
-            Pokemon[] allPokemon =
-                {
-                    pok1, pok2, pok3, pok4, pok5, pok6, pok7,
-                    pok8, pok9, pok10, pok11, pok12, pok13, pok14,
-                    pok15, pok16, pok17, pok18, pok19, pok20, pok21,
-                    pok22, pok23, pok24, pok25, pok26, pok27, pok28,
-                    pok29, pok30, pok31, pok32, pok33, pok34, pok35,
-                    pok36, pok37, pok38, pok39, pok40, pok41, pok42,
-                    pok43, pok44
-                };
+            PokeBase.All = new Pokemon[]
+            {
+                pok1,
+                pok2,
+                pok3,
+                pok4,
+                pok5,
+                pok6,
+                pok7,
+                pok8,
+                pok9,
+                pok10,
+                pok11,
+                pok12,
+                pok13,
+                pok14,
+                pok15,
+                pok16,
+                pok17,
+                pok18,
+                pok19,
+                pok20,
+                pok21,
+                pok22,
+                pok23,
+                pok24,
+                pok25,
+                pok26,
+                pok27,
+                pok28,
+                pok29,
+                pok30,
+                pok31,
+                pok32,
+                pok33,
+                pok34,
+                pok35,
+                pok36,
+                pok37,
+                pok38,
+                pok39,
+                pok40,
+                pok41,
+                pok42,
+                pok43,
+                pok44,
+            };
         }
+    }
 }

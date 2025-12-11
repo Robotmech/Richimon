@@ -1,3 +1,4 @@
+using Mob;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +16,17 @@ namespace Program_Richimon
             Console.Write("Enter your name: ");
             
             int rand = new Random().Next(1, 45);
+            CreatePokemon.MakeAllPokemon();
             
-            Pokemon Player = new 
+            Pokemon Player = new Pokemon
             (
-                allPokemon[rand].Name,
-                allPokemon[rand].AttackPower,
-                allPokemon[rand].DefensePower,
-                allPokemon[rand].HealthPoints,
-                allPokemon[rand].Condition,
-                allPokemon[rand].weapon,
-                allPokemon[rand].special
+                PokeBase.All[rand].Name,
+                PokeBase.All[rand].AttackPower,
+                PokeBase.All[rand].DefensePower,
+                PokeBase.All[rand].HealthPoints,
+                PokeBase.All[rand].Condition,
+                PokeBase.All[rand].Weapon,
+                PokeBase.All[rand].Special
             );
 
 
