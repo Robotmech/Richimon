@@ -438,6 +438,7 @@ namespace Mob
                     target.Condition = "Paralyzed";
                     target.ConditionTime = 1;
                     return;
+                }
             }
         }
 
