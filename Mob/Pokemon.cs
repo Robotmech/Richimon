@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,7 +49,20 @@ namespace Mob
             }
 
             int damage = Math.Max(0, this.AttackPower - target.DefensePower);
-
+            if (target.InCover)
+            {
+                int rng = new Random().Next(1, 10);
+                if (rng >= 8)
+                {
+                    Console.WriteLine(
+                        $"Against all odds, {target.Name} ignores the Cover completely!"
+                    );
+                }
+                else
+                {
+                    damage /= 2;
+                }
+            }
             target.HealthPoints -= damage;
             if (target.HealthPoints < 0)
                 target.HealthPoints = 0;
@@ -70,6 +85,12 @@ namespace Mob
         public void PokeSpecial(Pokemon target)
         {
             AbilityDatabase.Specials[Special].Effect(this, target);
+        }
+
+        public void Resist()
+        {
+            InCover = true;
+            Console.WriteLine($"{Name} went into Cover! Damage is Reduced by 50%");
         }
 
         public double ReturnWeaponMutliplier(string name)

@@ -9,19 +9,51 @@ namespace Mob
 {
     internal class WeaponDatabase
     {
-        Dictionary<string, Weapon> Weapons = new Dictionary<string, Weapon>
+        private readonly Dictionary<string, Weapon> Weapons = new Dictionary<string, Weapon>
         {
-            "Wasserpistole",
+            
+            {
+                "Wasserpistole",
+                new Weapon
+                {
+                    Name = "Wasserpistole",
+                    wpMulti = 0,
+                    wpSpc = (user, target) =>
+                {
+                    if (rng.Next(1, 51) == 1)
+                    {
+                        Console.WriteLine($"The Waterpistol hits clean into the brain of {target.Name}, killing them instantly!")
+                        target.HealthPoints = 0;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"The Water of the pistol splashes onto the enemy, dealing 0 damage!");
+                    }
+
+                }
+                }
+                
+            }
+            "FIH",
             new Weapon
             {
+                Name = "FIH",
                 wpMulti = 0,
                 wpSpc = (user, target) =>
                 {
                     if (rng.Next(1, 51) == 1)
-                        target.Health = 0;
+                    {
+                        Console.WriteLine($"The Waterpistol hits clean into the brain of {target.Name}, killing them instantly!")
+                        target.HealthPoints = 0;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"The Water of the pistol splashes onto the enemy, dealing 0 damage!");
+                    }
+
                 }
             }
-        }
+        };
     }
 }
 

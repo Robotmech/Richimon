@@ -14,6 +14,7 @@ namespace Mob
                 "Rapture",
                 new Ability
                 {
+                    ChargeNeeded = 5,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
@@ -28,6 +29,7 @@ namespace Mob
                 "Afisholypse",
                 new Ability
                 {
+                    ChargeNeeded = 4,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
@@ -44,10 +46,11 @@ namespace Mob
                 "Doom",
                 new Ability
                 {
+                    ChargeNeeded = 4,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
-                            $"The sky's color is overshadowed by a glooming red orb, appearing from the palm of Richard's Hand. As he raises his hand, the orb shifts into the form of a black hole and seconds later, explodes in a wide area, giving {target.Name} no chance to dodge and doing 300 Damage"
+                            $"A black hole explodes in a wide area, doing 300 Damage to {target.Name}!"
                         );
                         target.HealthPoints -= 300;
                         user.SpecialCharge = 0;
@@ -58,10 +61,11 @@ namespace Mob
                 "Fish cage",
                 new Ability
                 {
+                    ChargeNeeded = 3,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
-                            $"{user.Name} spawns an indestructible, fenced cage around {target.Name}, making them unable to make a turn for 10 rounds"
+                            $"{user.Name} traps {target.Name} in an unbreakable cage for 10 rounds!"
                         );
                         target.Condition = "Stunned";
                         target.ConditionTime = 10;
@@ -73,10 +77,11 @@ namespace Mob
                 "Flash",
                 new Ability
                 {
+                    ChargeNeeded = 3,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
-                            $"{user.Name} Flashes the enemy and deals 100 damage. The flash is so strong, that the enemy is confused for 3 rounds"
+                            $"{user.Name} flashes {target.Name}, dealing 100 damage and confusing them!"
                         );
                         target.HealthPoints -= 100;
                         target.Condition = "Confused";
@@ -89,11 +94,10 @@ namespace Mob
                 "FESCHT HÄBE",
                 new Ability
                 {
+                    ChargeNeeded = 3,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            "Richi holds down the enemy with all his might, restraining him for 5 rounds"
-                        );
+                        Console.WriteLine($"Richi restrains {target.Name} for 5 rounds!");
                         target.Condition = "Restrained";
                         target.ConditionTime = 5;
                         user.SpecialCharge = 0;
@@ -104,10 +108,11 @@ namespace Mob
                 "Chained Storms",
                 new Ability
                 {
+                    ChargeNeeded = 3,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
-                            $"{user.Name} calls down chained lightning that crashes into {target.Name}, dealing 180 damage and stunning them for 2 rounds!"
+                            $"{user.Name} deals 180 lightning damage and stuns {target.Name}!"
                         );
                         target.HealthPoints -= 180;
                         target.Condition = "Stunned";
@@ -120,10 +125,11 @@ namespace Mob
                 "Concentrated Meteor",
                 new Ability
                 {
+                    ChargeNeeded = 3,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
-                            $"{user.Name} compresses a meteor and drops it onto {target.Name}, dealing 160 damage and burning them for 3 rounds!"
+                            $"{user.Name} drops a compressed meteor on {target.Name}, dealing 160 and burning them!"
                         );
                         target.HealthPoints -= 160;
                         target.Condition = "Burned";
@@ -136,11 +142,10 @@ namespace Mob
                 "Luminar Buff",
                 new Ability
                 {
+                    ChargeNeeded = 2,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} is blessed by lunar energy, gaining a glowing shield that boosts their Defense for 3 rounds!"
-                        );
+                        Console.WriteLine($"{user.Name}'s defense rises for 3 rounds!");
                         user.Condition = "DefenseUp";
                         user.ConditionTime = 3;
                         user.SpecialCharge = 0;
@@ -151,10 +156,11 @@ namespace Mob
                 "Pierced Focus",
                 new Ability
                 {
+                    ChargeNeeded = 2,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
-                            $"{user.Name} focuses completely and strikes {target.Name}'s weakest spot, dealing 120 damage!"
+                            $"{user.Name} deals 120 piercing damage to {target.Name}!"
                         );
                         target.HealthPoints -= 120;
                         user.SpecialCharge = 0;
@@ -165,10 +171,11 @@ namespace Mob
                 "Titan Knuckle",
                 new Ability
                 {
+                    ChargeNeeded = 2,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
-                            $"{user.Name} slams a massive fist into {target.Name}, dealing 140 damage and stunning them for 1 round!"
+                            $"{user.Name} smashes {target.Name} for 140 damage and a stun!"
                         );
                         target.HealthPoints -= 140;
                         target.Condition = "Stunned";
@@ -181,11 +188,10 @@ namespace Mob
                 "Ember Lock",
                 new Ability
                 {
+                    ChargeNeeded = 2,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} traps {target.Name} in swirling embers, dealing 110 damage and burning them for 2 rounds!"
-                        );
+                        Console.WriteLine($"{user.Name} burns {target.Name} for 110 damage!");
                         target.HealthPoints -= 110;
                         target.Condition = "Burned";
                         target.ConditionTime = 2;
@@ -197,10 +203,11 @@ namespace Mob
                 "Mind Fracture",
                 new Ability
                 {
+                    ChargeNeeded = 2,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
-                            $"{user.Name} fractures {target.Name}'s thoughts with a psychic burst, dealing 100 damage and weakening them!"
+                            $"{user.Name} deals 100 psychic damage and weakens {target.Name}!"
                         );
                         target.HealthPoints -= 100;
                         target.Condition = "Weakened";
@@ -213,11 +220,10 @@ namespace Mob
                 "Blaze Lance",
                 new Ability
                 {
+                    ChargeNeeded = 2,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} fires a sharp flame lance at {target.Name}, dealing 130 damage!"
-                        );
+                        Console.WriteLine($"{user.Name} deals 130 flame damage!");
                         target.HealthPoints -= 130;
                         user.SpecialCharge = 0;
                     },
@@ -227,10 +233,11 @@ namespace Mob
                 "Volt Stunwave",
                 new Ability
                 {
+                    ChargeNeeded = 2,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
-                            $"{user.Name} sends a shockwave through {target.Name}, dealing 100 damage and paralyzing them!"
+                            $"{user.Name} shocks {target.Name} for 100 damage and paralysis!"
                         );
                         target.HealthPoints -= 100;
                         target.Condition = "Paralyzed";
@@ -243,10 +250,11 @@ namespace Mob
                 "Cursed Snap",
                 new Ability
                 {
+                    ChargeNeeded = 2,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
-                            $"{user.Name} snaps a curse onto {target.Name}, dealing 90 damage and weakening their defenses!"
+                            $"{user.Name} curses {target.Name}, dealing 90 and lowering defense!"
                         );
                         target.HealthPoints -= 90;
                         target.Condition = "DefenseDown";
@@ -259,11 +267,10 @@ namespace Mob
                 "Royal Hex",
                 new Ability
                 {
+                    ChargeNeeded = 2,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} casts a royal hex on {target.Name}, dealing extra damage if they are already afflicted!"
-                        );
+                        Console.WriteLine($"{user.Name} casts a hex dealing variable damage!");
                         int dmg = string.IsNullOrEmpty(target.Condition) ? 80 : 160;
                         target.HealthPoints -= dmg;
                         user.SpecialCharge = 0;
@@ -274,10 +281,11 @@ namespace Mob
                 "Neural Freeze",
                 new Ability
                 {
+                    ChargeNeeded = 2,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
-                            $"{user.Name} freezes {target.Name}'s thoughts, dealing 90 damage and slowing them!"
+                            $"{user.Name} freezes {target.Name}'s thoughts for 90 damage!"
                         );
                         target.HealthPoints -= 90;
                         target.Condition = "Slowed";
@@ -290,10 +298,11 @@ namespace Mob
                 "Mud Concussion",
                 new Ability
                 {
+                    ChargeNeeded = 2,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
-                            $"{user.Name} slams mud into {target.Name}, dealing 100 damage and stunning them!"
+                            $"{user.Name} slams {target.Name} for 100 damage and stun!"
                         );
                         target.HealthPoints -= 100;
                         target.Condition = "Stunned";
@@ -306,11 +315,10 @@ namespace Mob
                 "Gravity Drop",
                 new Ability
                 {
+                    ChargeNeeded = 2,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} increases gravity around {target.Name}, crushing them and pinning them down!"
-                        );
+                        Console.WriteLine($"{user.Name} crushes {target.Name} under gravity!");
                         int grav = Math.Max(1, target.HealthPoints / 20);
                         target.HealthPoints -= grav;
                         target.Condition = "Pinned";
@@ -323,11 +331,10 @@ namespace Mob
                 "Psyshock Torrent",
                 new Ability
                 {
+                    ChargeNeeded = 2,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} blasts {target.Name} with psychic water, dealing 90 damage and confusing them!"
-                        );
+                        Console.WriteLine($"{user.Name} deals 90 psychic-water damage!");
                         target.HealthPoints -= 90;
                         target.Condition = "Confused";
                         target.ConditionTime = 1;
@@ -339,11 +346,10 @@ namespace Mob
                 "Coil Slam",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} coils up and slams into {target.Name}, dealing 80 damage and dazing them!"
-                        );
+                        Console.WriteLine($"{user.Name} slams {target.Name} for 80 damage!");
                         target.HealthPoints -= 80;
                         target.Condition = "Dazed";
                         target.ConditionTime = 1;
@@ -355,11 +361,10 @@ namespace Mob
                 "Timber Bash",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} bashes {target.Name} with a heavy swing, dealing 70 damage and making them flinch!"
-                        );
+                        Console.WriteLine($"{user.Name} bashes {target.Name} for 70 damage!");
                         target.HealthPoints -= 70;
                         target.Condition = "Flinched";
                         target.ConditionTime = 1;
@@ -371,11 +376,10 @@ namespace Mob
                 "Seismic Spike",
                 new Ability
                 {
+                    ChargeNeeded = 2,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} erupts the ground beneath {target.Name}, dealing 100 damage and stunning them!"
-                        );
+                        Console.WriteLine($"{user.Name} erupts the ground, dealing 100!");
                         target.HealthPoints -= 100;
                         target.Condition = "Stunned";
                         target.ConditionTime = 1;
@@ -387,10 +391,11 @@ namespace Mob
                 "Bitchass Hating",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
-                            $"{user.Name} verbally destroys {target.Name}, dealing 40 damage and crushing their morale!"
+                            $"{user.Name} verbally destroys {target.Name}, dealing 40!"
                         );
                         target.HealthPoints -= 40;
                         target.Condition = "Demoralized";
@@ -403,11 +408,10 @@ namespace Mob
                 "Feet Feast",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} feasts on the Feet of {target.Name}, dealing 50 damage and blocking buffs!"
-                        );
+                        Console.WriteLine($"{user.Name} deals 50 damage and blocks buffs!");
                         target.HealthPoints -= 50;
                         target.Condition = "NoBuffs";
                         target.ConditionTime = 2;
@@ -419,10 +423,11 @@ namespace Mob
                 "Stalk",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
-                            $"{user.Name} quietly marks {target.Name}, making them take more damage for 3 rounds!"
+                            $"{user.Name} marks {target.Name} for increased future damage!"
                         );
                         target.Condition = "Marked";
                         target.ConditionTime = 3;
@@ -434,11 +439,10 @@ namespace Mob
                 "goon",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} recklessly charges {target.Name}, dealing 40 damage and exposing their defense!"
-                        );
+                        Console.WriteLine($"{user.Name} recklessly charges for 40 damage!");
                         target.HealthPoints -= 40;
                         target.Condition = "DefenseDown";
                         target.ConditionTime = 1;
@@ -450,10 +454,11 @@ namespace Mob
                 "Call of the Voices",
                 new Ability
                 {
+                    ChargeNeeded = 2,
                     Effect = (user, target) =>
                     {
                         Console.WriteLine(
-                            $"{user.Name} channels strange voices into {target.Name}, dealing 70 damage and causing panic!"
+                            $"{user.Name} channels voices, dealing 70 and causing panic!"
                         );
                         target.HealthPoints -= 70;
                         target.Condition = "Panicked";
@@ -466,11 +471,10 @@ namespace Mob
                 "Fire Breath",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} breathes fire at {target.Name}, dealing 60 damage and burning them!"
-                        );
+                        Console.WriteLine($"{user.Name} burns {target.Name} for 60 damage!");
                         target.HealthPoints -= 60;
                         target.Condition = "Burned";
                         target.ConditionTime = 2;
@@ -482,11 +486,10 @@ namespace Mob
                 "Lightning",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} strikes {target.Name} with lightning, dealing 70 damage and paralyzing them!"
-                        );
+                        Console.WriteLine($"{user.Name} shocks {target.Name} for 70!");
                         target.HealthPoints -= 70;
                         target.Condition = "Paralyzed";
                         target.ConditionTime = 1;
@@ -498,11 +501,10 @@ namespace Mob
                 "Mud Pop",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} pops mud at {target.Name}, dealing 40 damage and slowing them!"
-                        );
+                        Console.WriteLine($"{user.Name} mud-pops {target.Name} for 40!");
                         target.HealthPoints -= 40;
                         target.Condition = "Slowed";
                         target.ConditionTime = 1;
@@ -514,11 +516,10 @@ namespace Mob
                 "Adapt Burst",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} fires an adaptive strike, dealing 30 damage and boosting their own strength!"
-                        );
+                        Console.WriteLine($"{user.Name} deals 30 damage and raises Attack!");
                         target.HealthPoints -= 30;
                         user.Condition = "AttackUp";
                         user.ConditionTime = 2;
@@ -530,11 +531,10 @@ namespace Mob
                 "Head Pulse",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} sends a sudden pulse into {target.Name}, dealing 50 damage and confusing them!"
-                        );
+                        Console.WriteLine($"{user.Name} pulses {target.Name}'s brain for 50!");
                         target.HealthPoints -= 50;
                         target.Condition = "Confused";
                         target.ConditionTime = 1;
@@ -546,11 +546,10 @@ namespace Mob
                 "Timber Nudge",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} nudges {target.Name}, dealing 20 damage and making them flinch!"
-                        );
+                        Console.WriteLine($"{user.Name} nudges {target.Name} for 20!");
                         target.HealthPoints -= 20;
                         target.Condition = "Flinched";
                         target.ConditionTime = 1;
@@ -562,11 +561,10 @@ namespace Mob
                 "Burrow Sting",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} bursts from underground and strikes {target.Name}, dealing 40 damage!"
-                        );
+                        Console.WriteLine($"{user.Name} bursts from underground for 40!");
                         target.HealthPoints -= 40;
                         user.SpecialCharge = 0;
                     },
@@ -576,11 +574,10 @@ namespace Mob
                 "Iron Spirit",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} strikes with hardened resolve, dealing 30 damage and raising their defense!"
-                        );
+                        Console.WriteLine($"{user.Name} deals 30 and increases Defense!");
                         target.HealthPoints -= 30;
                         user.Condition = "DefenseUp";
                         user.ConditionTime = 1;
@@ -592,11 +589,10 @@ namespace Mob
                 "Boulder Jab",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} jabs {target.Name} with rock-like force, dealing 50 damage and slowing them!"
-                        );
+                        Console.WriteLine($"{user.Name} jabs {target.Name} for 50 and slows them!");
                         target.HealthPoints -= 50;
                         target.Condition = "Slowed";
                         target.ConditionTime = 1;
@@ -608,11 +604,10 @@ namespace Mob
                 "Spark Claw",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} slashes {target.Name} with a spark-covered claw, dealing 40 damage!"
-                        );
+                        Console.WriteLine($"{user.Name} slashes for 40 damage!");
                         target.HealthPoints -= 40;
                         user.SpecialCharge = 0;
                     },
@@ -622,11 +617,10 @@ namespace Mob
                 "Mind Skip",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} interrupts {target.Name}'s thoughts, forcing them to skip their next turn!"
-                        );
+                        Console.WriteLine($"{user.Name} forces {target.Name} to skip a turn!");
                         target.Condition = "Stunned";
                         target.ConditionTime = 1;
                         user.SpecialCharge = 0;
@@ -637,11 +631,10 @@ namespace Mob
                 "Lazy Slide",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} lazily slides into {target.Name}, dealing 20 damage and slowing them!"
-                        );
+                        Console.WriteLine($"{user.Name} slides lazily for 20 damage!");
                         target.HealthPoints -= 20;
                         target.Condition = "Slowed";
                         target.ConditionTime = 1;
@@ -653,11 +646,10 @@ namespace Mob
                 "Aqua Flick",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} flicks a droplet of water at {target.Name}, dealing 10 damage!"
-                        );
+                        Console.WriteLine($"{user.Name} flicks water for 10 damage!");
                         target.HealthPoints -= 10;
                         user.SpecialCharge = 0;
                     },
@@ -667,11 +659,10 @@ namespace Mob
                 "Static Peep",
                 new Ability
                 {
+                    ChargeNeeded = 1,
                     Effect = (user, target) =>
                     {
-                        Console.WriteLine(
-                            $"{user.Name} releases a tiny static chirp at {target.Name}, dealing 20 damage and paralyzing them!"
-                        );
+                        Console.WriteLine($"{user.Name} peeps static for 20 damage and paralysis!");
                         target.HealthPoints -= 20;
                         target.Condition = "Paralyzed";
                         target.ConditionTime = 1;

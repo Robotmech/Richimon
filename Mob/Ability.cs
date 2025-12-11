@@ -9,6 +9,7 @@ namespace Mob
     public class Ability
     {
         public Action<Pokemon, Pokemon> Effect;
+        public int ChargeNeeded;
     }
 
     //one
