@@ -6,4 +6,11 @@ using System.Threading.Tasks;
 
 namespace Mob
 {
-    
+    internal class CreatePokemon
+    {
+        public void MakeAllPokemon()
+        {
+            console
+        }
+    }
+}
